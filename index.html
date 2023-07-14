@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список товаров</title>
+
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <script type="importmap">
+        {
+            "imports": {
+                "vue": "./node_modules/vue/dist/vue.esm-browser.prod.js"
+            }
+        }
+    </script>
+
+    <script type="module" src="./assets/js/app.js"></script>
+
+</head>
+<body>
+    <div class="container pt-4" id="app">
+
+        <h1>{{title}}</h1>
+
+        <input id='search' class='me-auto mb-2' type="text" placeholder="Поиск..." v-model="search">
+
+        <div class="form-check">
+            
+            <input id="sort-up" value="up" class="form-check-input" type="radio" name="sort" v-model="sort">
+            <label class="form-check-label" for="flexRadioDefault1">
+              Сначала дорогое
+            </label>
+
+        </div>
+
+        <div class="form-check">
+
+            <input id='sort-down' class="form-check-input" type="radio" name="flexRadioDefault" value='down' name='sort' v-model="sort">
+            <label class="form-check-label" for="flexRadioDefault2">
+              Сначала дешевое 
+            </label>
+            
+        </div>
+
+        <div class="row row-cols-2 row-cols-md-4">
+            
+            <one-item v-for="item in list" 
+            :product-item="item">
+            </one-item>
+
+        </div>
+
+    </div>
+</body>
+</html>
