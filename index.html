@@ -29,7 +29,7 @@
             
             <input id="sort-up" value="up" class="form-check-input" type="radio" name="sort" v-model="sort">
             <label class="form-check-label" for="flexRadioDefault1">
-              Сначала дорогое
+              Сначала дешевое
             </label>
 
         </div>
@@ -38,14 +38,14 @@
 
             <input id='sort-down' class="form-check-input" type="radio" name="flexRadioDefault" value='down' name='sort' v-model="sort">
             <label class="form-check-label" for="flexRadioDefault2">
-              Сначала дешевое 
+              Сначала дорогое 
             </label>
             
         </div>
 
         <div class="row row-cols-2 row-cols-md-4">
             
-            <one-item v-for="item in list" 
+            <one-item v-for="item in listToShow" 
             :product-item="item">
             </one-item>
 

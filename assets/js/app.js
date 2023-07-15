@@ -17,7 +17,6 @@ createApp({
                 data = await data.json();
             list.push(...data);
             
-            console.log(data);
         });
 
         const sort = ref('');
@@ -27,7 +26,6 @@ createApp({
         const listToShow = computed(() => {
 
             let filteredList = list
-            .data
             .filter( item => item
                 .description
                 .toLowerCase().
