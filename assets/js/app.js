@@ -1,3 +1,4 @@
+
 import { createApp, ref, reactive, watch, onMounted, computed } from "vue";
 
 import OneItem from "./components/OneItem.js";
@@ -23,21 +24,27 @@ createApp({
 
         const search = ref('');
 
+        const sortRange = ref('');
+
+        console.log(list);
+
         const listToShow = computed(() => {
 
             let filteredList = list
-            .filter( item => item
+            .filter( item => 
+                
+                item
                 .description
                 .toLowerCase().
                 includes(search
                     .value
                     .toLowerCase()) || 
-                            item
+                item
                 .title
                 .toLowerCase().
                 includes(search
                     .value
-                    .toLowerCase()));
+                    .toLowerCase()))
 
             if(sort.value == 'up'){
                 filteredList.sort ((a, b) => a.price - b.price);
@@ -45,8 +52,22 @@ createApp({
                 filteredList.sort((a, b) => b.price - a.price);
             }
 
+            
+            if(minPrice.value > maxPrice.value) {
+                let temp = maxPrice.value;
+                maxPrice.value = minPrice.value;
+                minPrice.value = temp;
+                filteredList.sort(item => item.price >= minPrice.value && item.price <= maxPrice.value);
+            } else {
+                filteredList.sort(item => item.price >= minPrice.value && item.price <= maxPrice.value);
+            }
+
             return filteredList
-        })
+        });
+
+        const minPrice = ref(0);
+
+        const maxPrice = ref(1000);
 
 
 
@@ -55,15 +76,16 @@ createApp({
             list,
             sort,
             search,
-            listToShow
+            listToShow,
+            minPrice,
+            maxPrice,
+            sortRange
         }
     },
 
     components: {
         OneItem
     }
-
-
 
 
 }).mount('#app');

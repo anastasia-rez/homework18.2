@@ -7,6 +7,8 @@
 
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
 
+    <link rel="stylesheet" href="./assets/css/style.css">
+
     <script type="importmap">
         {
             "imports": {
@@ -42,6 +44,35 @@
             </label>
             
         </div>
+
+        <div class="range-slider mt-3">
+            <input 
+                type="range" 
+                class="m-3" 
+                min="0" 
+                max="1000" 
+                step="10"
+                v-model.number="minPrice"
+                @click="sortRange"
+            >
+
+            <input 
+                type="range" 
+                class="m-3" 
+                min="0" 
+                max="1000" 
+                step="10"
+                v-model.number="maxPrice"
+                @click="sortRange"
+            >
+        </div>
+
+        <div class="range-values">
+            <p>Min: {{minPrice}}</p>
+            <p>Max: {{maxPrice}}</p>
+        </div>
+
+        
 
         <div class="row row-cols-2 row-cols-md-4">
             
