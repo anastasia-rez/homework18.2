@@ -46,6 +46,8 @@ createApp({
                     .value
                     .toLowerCase()))
 
+                .filter(item => item.price >= minPrice.value && item.price <= maxPrice.value);
+
             if(sort.value == 'up'){
                 filteredList.sort ((a, b) => a.price - b.price);
             } else if (sort.value == 'down'){
@@ -53,14 +55,11 @@ createApp({
             }
 
             
-            if(minPrice.value > maxPrice.value) {
-                let temp = maxPrice.value;
-                maxPrice.value = minPrice.value;
-                minPrice.value = temp;
-                filteredList.sort(item => item.price >= minPrice.value && item.price <= maxPrice.value);
-            } else {
-                filteredList.sort(item => item.price >= minPrice.value && item.price <= maxPrice.value);
-            }
+            // if(minPrice.value > maxPrice.value) {
+            //     let temp = maxPrice.value;
+            //     maxPrice.value = minPrice.value;
+            //     minPrice.value = temp;
+            // }
 
             return filteredList
         });
